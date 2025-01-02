@@ -5,7 +5,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>kafkaspark</groupId>
-  <artifactId>ScalaSparkKafka</artifactId>
+  <artifactId>sop_read_api</artifactId>
   <version>1.0-SNAPSHOT</version>
 
   <properties>
@@ -80,7 +80,7 @@
           <archive>
             <manifest>
               <addClasspath>true</addClasspath>
-              <mainClass>kafkaspark.SendDataToKafka</mainClass>
+              <mainClass>kafkaspark.sop_read_api</mainClass>
             </manifest>
           </archive>
         </configuration>
