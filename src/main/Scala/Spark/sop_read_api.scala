@@ -67,7 +67,11 @@ object sop_read_api {
     val sorted_df = df_transformed.orderBy("year")
     sorted_df.show(10)
 
-    sorted_df.write.mode("overwrite").saveAsTable("product.electricity_data")
+    // Write DataFrame to Hive table
+    sorted_df.write
+      .mode("overwrite")  // Use append for adding data without overwriting
+      .saveAsTable("bigdata_nov_2024.sop_full_energy")  // Specify your database and table name
+
     println("In Hive")
   }
 }
