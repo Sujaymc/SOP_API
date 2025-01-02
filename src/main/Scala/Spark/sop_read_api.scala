@@ -67,11 +67,23 @@ object sop_read_api {
     val sorted_df = df_transformed.orderBy("year")
     sorted_df.show(10)
 
-    // Write DataFrame to Hive table
-    sorted_df.write
-      .mode("overwrite")  // Use append for adding data without overwriting
-      .saveAsTable("bigdata_nov_2024.sop_full_energy")  // Specify your database and table name
+    // Write data to PostgreSQL
+    val jdbcUrl = "jdbc:postgresql://18.132.73.146:5432/testdb"
+    val dbProperties = new java.util.Properties()
+    dbProperties.setProperty("user", "consultants")
+    dbProperties.setProperty("password", "WelcomeItc@2022")
+    dbProperties.setProperty("driver", "org.postgresql.Driver")
 
-    println("In Hive")
+    sorted_df.write
+      .mode("overwrite")
+      .jdbc(jdbcUrl, "public.sop_electricity_data", dbProperties)
+
+    println("Data loaded to PostgreSQL")
+    // Write DataFrame to Hive table
+//    sorted_df.write
+//      .mode("overwrite")  // Use append for adding data without overwriting
+//      .saveAsTable("bigdata_nov_2024.sop_full_energy")  // Specify your database and table name
+//
+//    println("In Hive")
   }
 }
