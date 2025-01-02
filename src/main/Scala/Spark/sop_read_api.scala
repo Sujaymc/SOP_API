@@ -63,7 +63,7 @@ object sop_read_api {
 
     df_transformed.show(10)
 
-    // Sort the DataFrame by year
+    // Sort the DataFrame by year!
     val sorted_df = df_transformed.orderBy("year")
     sorted_df.show(10)
 
