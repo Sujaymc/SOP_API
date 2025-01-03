@@ -1,4 +1,4 @@
-package spark
+package spark  //change it to your directory name
 import org.apache.spark.sql.SparkSession
 import org.apache.spark.sql.functions._
 import org.apache.spark.sql.types._
@@ -39,7 +39,7 @@ object sop_fromkafka_api {
     // Read the JSON messages from Kafka as a DataFrame
     val df = spark.readStream.format("kafka").option("kafka.bootstrap.servers", "ip-172-31-8-235.eu-west-2.compute.internal:9092").option("subscribe", topic).option("startingOffsets", "earliest").load().select(from_json(col("value").cast("string"), schema).as("data")).selectExpr("data.*")
 
-    // Write the DataFrame as CSV files to HDFS
+    // Write the DataFrame as CSV files to HDFS // give your hdfs folder
     df.writeStream.format("csv").option("checkpointLocation", "/tmp/bigdata_nov_2024/sujay/checkpoint").option("path", "/tmp/bigdata_nov_2024/sujay/data").start().awaitTermination()
 
   }

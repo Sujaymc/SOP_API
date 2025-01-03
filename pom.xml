@@ -4,8 +4,8 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>spark</groupId>
-  <artifactId>SOP_API</artifactId>
+  <groupId>spark</groupId> <!--    change it your directory name -->
+  <artifactId>SOP_API</artifactId> <!--    change it to your main project name-->
   <version>1.0-SNAPSHOT</version>
 
   <properties>
@@ -80,7 +80,7 @@
           <archive>
             <manifest>
               <addClasspath>true</addClasspath>
-              <mainClass>spark.sop_read_api</mainClass>
+              <mainClass>spark.sop_read_api</mainClass>  <!--    change it to your directory.classname name-->
             </manifest>
           </archive>
         </configuration>
