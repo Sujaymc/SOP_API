@@ -5,12 +5,14 @@ import requests._
 object sop_read_api {
 
   def main(args: Array[String]): Unit = {
+    //Start spark session
     val spark = SparkSession.builder()
       .appName("My Spark Application")
       .master("local[*]")
       .getOrCreate()
     while (true) {
       import spark.implicits._
+    //API details loading
       val apiUrl = "https://api.tfl.gov.uk/Line/victoria/Arrivals?app_id=92293faa428041caad3dd647d39753a0&app_key=ba72936a3db54b4ba5792dc8f7acc043"
       val response = get(apiUrl, headers = headers)
       val total = response.text()
@@ -23,6 +25,8 @@ object sop_read_api {
         $"timestamp",$"timeToStation", $"currentLocation",$"timeToLive")
       // Show a few messages, e.g., 5 rows
       messageDF.show(5, truncate = false)
+
+      //Kafka server and topic name assignment
       val kafkaServer: String = "ip-172-31-8-235.eu-west-2.compute.internal:9092"
       val topicSampleName: String = "sujay_topic1"
 
