@@ -34,3 +34,6 @@ object sop_read_api {
   }
 
 }
+
+//mvn package
+//spark-submit --master local --packages "org.apache.spark:spark-sql-kafka-0-10_2.11:2.4.7","com.lihaoyi:requests_2.11:0.7.1" target/SOP_API-1.0-SNAPSHOT.jar
