@@ -23,7 +23,7 @@ object sop_read_api {
         $"timestamp",$"timeToStation", $"currentLocation",$"timeToLive")
       // Show a few messages, e.g., 5 rows
       messageDF.show(5, truncate = false)
-      val kafkaServer: String = "ip-172-31-8-235.eu-west-2.compute.internal"
+      val kafkaServer: String = "ip-172-31-8-235.eu-west-2.compute.internal:9092"
       val topicSampleName: String = "sujay_topic1"
 
       messageDF.selectExpr("CAST(id AS STRING) AS key", "to_json(struct(*)) AS value").selectExpr("CAST(key AS STRING)", "CAST(value AS STRING)").write.format("kafka").option("kafka.bootstrap.servers", kafkaServer).option("topic", topicSampleName).save()
