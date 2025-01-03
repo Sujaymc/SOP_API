@@ -23,9 +23,12 @@ object sop_read_api {
         $"timestamp",$"timeToStation", $"currentLocation",$"timeToLive")
       // Show a few messages, e.g., 5 rows
       messageDF.show(5, truncate = false)
+      val kafkaServer: String = "ip-172-31-8-235.eu-west-2.compute.internal"
+      val topicSampleName: String = "sujay_topic1"
 
-      // Sleep for a short time to avoid overwhelming the API
-      Thread.sleep(5000) // 5 seconds
+      messageDF.selectExpr("CAST(id AS STRING) AS key", "to_json(struct(*)) AS value").selectExpr("CAST(key AS STRING)", "CAST(value AS STRING)").write.format("kafka").option("kafka.bootstrap.servers", kafkaServer).option("topic", topicSampleName).save()
+      println("message is loaded to kafka topic")
+      Thread.sleep(10000) // wait for 10 seconds before making the next call
 
     }
   }
