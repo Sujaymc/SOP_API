@@ -21,7 +21,11 @@ object sop_read_api {
       val messageDF = dfFromText.select($"id", $"stationName", $"lineName", $"towards",
         $"expectedArrival",$"vehicleId",$"platformName",$"direction",$"destinationName",
         $"timestamp",$"timeToStation", $"currentLocation",$"timeToLive")
-      print(messageDF)
+      // Show a few messages, e.g., 5 rows
+      messageDF.show(5, truncate = false)
+
+      // Sleep for a short time to avoid overwhelming the API
+      Thread.sleep(5000) // 5 seconds
 
     }
   }
