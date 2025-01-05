@@ -1,4 +1,6 @@
-package spark  //change it to your directory name
+package spark
+
+//change it to your directory name
 import org.apache.spark.sql.SparkSession
 import org.apache.spark.sql.functions._
 import org.apache.spark.sql.types._
